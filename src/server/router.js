@@ -150,6 +150,33 @@ function enableMetadataRoute(app, config, corsDefaults) {
 	);
 }
 
+
+function enableBaseRoute(app, config, corsDefaults) {
+	let { route } = require('./base/base.config');
+
+	// Determine which versions need a base endpoint, we need to loop through
+	// all the configured profiles and find all the uniquely provided versions
+	let versionValidationConfiguration = {
+		versions: getAllConfiguredVersions(config.profiles),
+	};
+
+	let corsOptions = Object.assign({}, corsDefaults, {
+		methods: [route.type.toUpperCase()],
+	});
+
+	// Enable cors with preflight
+	app.options(route.path, cors(corsOptions));
+
+	// Enable base route
+	app[route.type](
+		route.path,
+		cors(corsOptions),
+		versionValidationMiddleware(versionValidationConfiguration),
+		sanitizeMiddleware(route.args),
+		route.controller({ config }),
+	);
+}
+
 function enableResourceRoutes(app, config, corsDefaults) {
 	// Iterate over all of our provided profiles
 	for (let key in config.profiles) {
@@ -245,6 +272,7 @@ function setRoutes(options = {}) {
 	let corsDefaults = Object.assign({}, server.corsOptions);
 
 	// Enable all routes, operations are enabled inside enableResourceRoutes
+	enableBaseRoute(app, config, corsDefaults);
 	enableMetadataRoute(app, config, corsDefaults);
 	enableResourceRoutes(app, config, corsDefaults);
 }
