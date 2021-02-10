@@ -1,18 +1,39 @@
 const { resolveSchema } = require('./server/utils/schema.utils');
 const ServerError = require('./server/utils/server.error');
-const winston = require('./server/winston.js');
+const loggers = require('./server/winston.js');
 const Server = require('./server/server');
-const constants = require('./constants');
+const { SEVERITY, CODE, INTERACTIONS, VERSIONS, EVENTS, RESOURCES } = require('./constants');
 
-/**
- * @name exports
- * @description Export the server and some convenience methods for building a FHIR server
- */
 module.exports = {
   /**
-   * @description Export constants so users can have access to these
+   * @description Severity
    */
-  constants,
+  SEVERITY,
+
+  /**
+   * @description Value Set Issue Types https://www.hl7.org/fhir/valueset-issue-type.html
+   */
+  CODE,
+
+  /**
+   * @description Resource interaction types
+   */
+  INTERACTIONS,
+
+  /**
+   * @description FHIR Versions
+   */
+  VERSIONS,
+
+  /**
+   * @description Events like Auditing and Provenance
+   */
+  EVENTS,
+
+  /**
+   * @description Severity
+   */
+  RESOURCES,
 
   /**
    * @description Export Server Error class for people to throw from services
@@ -37,7 +58,7 @@ module.exports = {
    * @description Export logger to allow for customization and easy access to
    * various loggers
    */
-  loggers: winston,
+  loggers,
 
   /**
    * @description Initialize is useful for building a server with all the defaults

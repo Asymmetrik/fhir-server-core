@@ -5,10 +5,10 @@ const {
   notFound,
   deleted,
   internal,
-  isServerError,
+  isServerError
 } = require('./error.utils');
 
-const { ISSUE, VERSIONS } = require('../../constants');
+const { SEVERITY, CODE, VERSIONS } = require('../../constants');
 
 describe('Error Utils Tests', () => {
   test('should return correct OperationOutcome for an invalidParameter error', () => {
@@ -18,8 +18,8 @@ describe('Error Utils Tests', () => {
     expect(error.statusCode).toEqual(400);
     expect(error.issue).toHaveLength(1);
 
-    expect(issue.code).toBe(ISSUE.CODE.INVALID);
-    expect(issue.severity).toBe(ISSUE.SEVERITY.ERROR);
+    expect(issue.code).toBe(CODE.INVALID);
+    expect(issue.severity).toBe(SEVERITY.ERROR);
     expect(issue.diagnostics).toBe('Age is invalid.');
   });
 
@@ -34,8 +34,8 @@ describe('Error Utils Tests', () => {
     let issueWithoutMessage = errorWithoutMessage.issue[0];
 
     // Check the code and severity on one
-    expect(issueWithMessage.code).toBe(ISSUE.CODE.FORBIDDEN);
-    expect(issueWithoutMessage.severity).toBe(ISSUE.SEVERITY.ERROR);
+    expect(issueWithMessage.code).toBe(CODE.FORBIDDEN);
+    expect(issueWithoutMessage.severity).toBe(SEVERITY.ERROR);
 
     // Check the message for both
     expect(issueWithMessage.diagnostics).toBe('You shall not pass.');
@@ -56,8 +56,8 @@ describe('Error Utils Tests', () => {
     let issueWithoutMessage = errorWithoutMessage.issue[0];
 
     // Check the code and severity on one
-    expect(issueWithMessage.code).toBe(ISSUE.CODE.FORBIDDEN);
-    expect(issueWithoutMessage.severity).toBe(ISSUE.SEVERITY.ERROR);
+    expect(issueWithMessage.code).toBe(CODE.FORBIDDEN);
+    expect(issueWithoutMessage.severity).toBe(SEVERITY.ERROR);
 
     // Check the message for both
     expect(issueWithMessage.diagnostics).toBe('Not enough scope for this action.');
@@ -75,8 +75,8 @@ describe('Error Utils Tests', () => {
     let issueWithoutMessage = errorWithoutMessage.issue[0];
 
     // Check the code and severity on one
-    expect(issueWithMessage.code).toBe(ISSUE.CODE.NOT_FOUND);
-    expect(issueWithoutMessage.severity).toBe(ISSUE.SEVERITY.ERROR);
+    expect(issueWithMessage.code).toBe(CODE.NOT_FOUND);
+    expect(issueWithoutMessage.severity).toBe(SEVERITY.ERROR);
 
     // Check the message for both
     expect(issueWithMessage.diagnostics).toBe('Somthing not found.');
@@ -94,8 +94,8 @@ describe('Error Utils Tests', () => {
     let issueWithoutMessage = errorWithoutMessage.issue[0];
 
     // Check the code and severity on one
-    expect(issueWithMessage.code).toBe(ISSUE.CODE.NOT_FOUND);
-    expect(issueWithoutMessage.severity).toBe(ISSUE.SEVERITY.ERROR);
+    expect(issueWithMessage.code).toBe(CODE.NOT_FOUND);
+    expect(issueWithoutMessage.severity).toBe(SEVERITY.ERROR);
 
     // Check the message for both
     expect(issueWithMessage.diagnostics).toBe('This resource has been deleted.');
@@ -123,9 +123,9 @@ describe('Error Utils Tests', () => {
     let customIssueWithMessage = responseCustom.issue[0];
 
     // Check the code and severity on one
-    expect(issueWithMessage.code).toBe(ISSUE.CODE.EXCEPTION);
-    expect(issueWithoutMessage.severity).toBe(ISSUE.SEVERITY.ERROR);
-    expect(customIssueWithMessage.severity).toBe(ISSUE.SEVERITY.WARNING);
+    expect(issueWithMessage.code).toBe(CODE.EXCEPTION);
+    expect(issueWithoutMessage.severity).toBe(SEVERITY.ERROR);
+    expect(customIssueWithMessage.severity).toBe(SEVERITY.WARNING);
 
     // Check the message for both
     expect(issueWithMessage.diagnostics).toBe('Internal Server Error.');

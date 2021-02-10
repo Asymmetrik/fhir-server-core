@@ -1,8 +1,8 @@
-const { ISSUE, VERSIONS } = require('../../constants');
+const { SEVERITY, CODE, VERSIONS } = require('../../constants');
 const { resolveSchema } = require('./schema.utils');
 
 // Helper to determine which operation outcome to retrieve
-let getErrorConstructor = (baseVersion) => {
+let getErrorConstructor = baseVersion => {
   if (!baseVersion || !Object.prototype.hasOwnProperty.call(VERSIONS, baseVersion)) {
     return resolveSchema(VERSIONS['3_0_1'], 'OperationOutcome');
   } else {
@@ -24,13 +24,13 @@ let invalidParameter = (message, base_version) => {
     statusCode: 400,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, message),
+      div: div_content(SEVERITY.ERROR, message)
     },
     issue: {
-      code: ISSUE.CODE.INVALID,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: message,
-    },
+      code: CODE.INVALID,
+      severity: SEVERITY.ERROR,
+      diagnostics: message
+    }
   });
 };
 
@@ -41,13 +41,13 @@ let unauthorized = (message, base_version) => {
     statusCode: 401,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, message || 'Unauthorized request'),
+      div: div_content(SEVERITY.ERROR, message || 'Unauthorized request')
     },
     issue: {
-      code: ISSUE.CODE.FORBIDDEN,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: message || '401: Unauthorized request',
-    },
+      code: CODE.FORBIDDEN,
+      severity: SEVERITY.ERROR,
+      diagnostics: message || '401: Unauthorized request'
+    }
   });
 };
 
@@ -57,13 +57,13 @@ let insufficientScope = (message, base_version) => {
     statusCode: 403,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, message || 'Insufficient scope'),
+      div: div_content(SEVERITY.ERROR, message || 'Insufficient scope')
     },
     issue: {
-      code: ISSUE.CODE.FORBIDDEN,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: message || '403: Insufficient scope',
-    },
+      code: CODE.FORBIDDEN,
+      severity: SEVERITY.ERROR,
+      diagnostics: message || '403: Insufficient scope'
+    }
   });
 };
 
@@ -73,13 +73,13 @@ let notFound = (message, base_version) => {
     statusCode: 404,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, message || 'Not found'),
+      div: div_content(SEVERITY.ERROR, message || 'Not found')
     },
     issue: {
-      code: ISSUE.CODE.NOT_FOUND,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: message || '404: Not found',
-    },
+      code: CODE.NOT_FOUND,
+      severity: SEVERITY.ERROR,
+      diagnostics: message || '404: Not found'
+    }
   });
 };
 
@@ -89,13 +89,13 @@ let methodNotAllowed = (message, base_version) => {
     statusCode: 405,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, message || 'Method not allowed'),
+      div: div_content(SEVERITY.ERROR, message || 'Method not allowed')
     },
     issue: {
-      code: ISSUE.CODE.NOT_SUPPORTED,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: message || '405: Method not allowed',
-    },
+      code: CODE.NOT_SUPPORTED,
+      severity: SEVERITY.ERROR,
+      diagnostics: message || '405: Method not allowed'
+    }
   });
 };
 
@@ -105,13 +105,13 @@ let deleteConflict = (message, base_version) => {
     statusCode: 409,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, message || 'Conflict'),
+      div: div_content(SEVERITY.ERROR, message || 'Conflict')
     },
     issue: {
-      code: ISSUE.CODE.CONFLICT,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: message || '409: Conflict',
-    },
+      code: CODE.CONFLICT,
+      severity: SEVERITY.ERROR,
+      diagnostics: message || '409: Conflict'
+    }
   });
 };
 
@@ -121,13 +121,13 @@ let deleted = (message, base_version) => {
     statusCode: 410,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, message || 'Resource deleted'),
+      div: div_content(SEVERITY.ERROR, message || 'Resource deleted')
     },
     issue: {
-      code: ISSUE.CODE.NOT_FOUND,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: message || '410: Resource deleted',
-    },
+      code: CODE.NOT_FOUND,
+      severity: SEVERITY.ERROR,
+      diagnostics: message || '410: Resource deleted'
+    }
   });
 };
 
@@ -144,14 +144,14 @@ let customError = (err, base_version) => {
     statusCode: err.statusCode,
     text: {
       status: 'generated',
-      div: div_content(err.severity, err.message),
+      div: div_content(err.severity, err.message)
     },
     issue: {
       code: err.code,
       severity: err.severity,
-      diagnostics: err.message,
+      diagnostics: err.message
     },
-    isCustom: true,
+    isCustom: true
   });
 };
 
@@ -166,13 +166,13 @@ let internal = (err, base_version) => {
     statusCode: 500,
     text: {
       status: 'generated',
-      div: div_content(ISSUE.SEVERITY.ERROR, err.message || 'Internal server error'),
+      div: div_content(SEVERITY.ERROR, err.message || 'Internal server error')
     },
     issue: {
-      code: ISSUE.CODE.EXCEPTION,
-      severity: ISSUE.SEVERITY.ERROR,
-      diagnostics: err.message || '500: Internal server error',
-    },
+      code: CODE.EXCEPTION,
+      severity: SEVERITY.ERROR,
+      diagnostics: err.message || '500: Internal server error'
+    }
   });
 };
 
@@ -193,5 +193,5 @@ module.exports = {
   deleted,
   internal,
   customError,
-  isServerError,
+  isServerError
 };
