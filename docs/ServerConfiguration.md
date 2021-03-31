@@ -176,14 +176,14 @@ const fhirConfig = {
 #### `server.ssl.key`
 
 - **Type:** `string`
-- **Description:** Path to your private key. See [Contributor's guide](./.github/CONTRIBUTING.md#generate-self-signed-certs) for how to generate a self-signed cert for local development.
+- **Description:** Path to your private key. See [Contributor's guide](https://github.com/Asymmetrik/node-fhir-server-core/blob/master/CONTRIBUTING.md#optional) for how to generate a self-signed cert for local development.
 - **Required:** No. If you want to setup express to use ssl, you need both a key and cert.
 - **Default:** `none`
 
 #### `server.ssl.cert`
 
 - **Type:** `string`
-- **Description:** Path to your certificate. See [Contributor's guide](./.github/CONTRIBUTING.md#generate-self-signed-certs) for how to generate a self-signed cert for local development.
+- **Description:** Path to your certificate. See [Contributor's guide](https://github.com/Asymmetrik/node-fhir-server-core/blob/master/CONTRIBUTING.md#optional) for how to generate a self-signed cert for local development.
 - **Required:** No. If you want to setup express to use ssl, you need both a key and cert.
 - **Default:** `none`
 

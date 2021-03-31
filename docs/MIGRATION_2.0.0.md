@@ -208,7 +208,7 @@ let OperationOutcome = resolveSchema('4_0_0', 'operationoutcome');
 let Patient = resolveSchema('3_0_1', 'patient');
 ```
 
-Allowed values can be found in the [resources](../src/server/resources) directory. Each top level folder represents a version and inside each version folder is a schemas directory which contains all the available schemas you can load.
+Allowed values can be found in the [resources](https://github.com/Asymmetrik/node-fhir-server-core/blob/master/packages/node-fhir-server-core/src/server/resources) directory. Each top level folder represents a version and inside each version folder is a schemas directory which contains all the available schemas you can load.
 
 ### Logging Container
 

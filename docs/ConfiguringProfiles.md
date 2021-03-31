@@ -16,7 +16,7 @@ A [profile](https://www.hl7.org/fhir/profilelist.html) corresponds to a queryabl
 
 ### Supported Profiles
 
-To find a list of all supported profiles, please go to [src/server/resources/base_version/parameters](https://github.com/Asymmetrik/node-fhir-server-core/tree/master/src/server/resources/4_0_0/parameters) for your corresponding FHIR version (this links to version `4.0.0`).
+To find a list of all supported profiles, please go to [src/server/resources/base_version/parameters](https://github.com/Asymmetrik/node-fhir-server-core/tree/master/packages/node-fhir-server-core/src/server/resources/4_0_0/parameters) for your corresponding FHIR version (this links to version `4.0.0`).
 
 Profiles have the following configuration options:
 
@@ -30,7 +30,7 @@ Profiles have the following configuration options:
 #### `versions`
 
 - **Type:** `Array<string>`
-- **Description:** An array of strings containing the versions you intend to support. You cannot add anything you want here, only valid versions supported in core will be used. See [`exports.VERSIONS`](https://github.com/Asymmetrik/node-fhir-server-core/blob/master/src/constants.js) in the constants file.
+- **Description:** An array of strings containing the versions you intend to support. You cannot add anything you want here, only valid versions supported in core will be used. See [`exports.VERSIONS`](https://github.com/Asymmetrik/node-fhir-server-core/blob/master/packages/node-fhir-server-core/src/constants.js) in the constants file.
 - **Required:** `Yes`
 - **Default:** `none`
 
@@ -285,4 +285,4 @@ module.exports.remove = async (args, context) => {
 
 ## Arguments
 
-Each resource supports the arguments defined by the specification for its own version. You can either review the official FHIR documentation, or you can look in the [resources](../src/server/resources) directory of this project. Each `version` folder represents a version we support, and in each version folder there is a `parameters` folder which defines the parameters for each resource. When an API endpoint is hit, each resource will allow its own arguments and any inherited arguments from parent resources.
+Each resource supports the arguments defined by the specification for its own version. You can either review the official FHIR documentation, or you can look in the [resources](https://github.com/Asymmetrik/node-fhir-server-core/blob/master/packages/node-fhir-server-core/src/server/resources) directory of this project. Each `version` folder represents a version we support, and in each version folder there is a `parameters` folder which defines the parameters for each resource. When an API endpoint is hit, each resource will allow its own arguments and any inherited arguments from parent resources.
