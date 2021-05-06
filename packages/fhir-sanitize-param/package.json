@@ -12,7 +12,7 @@
   "main": "index.js",
   "dependencies": {
     "moment-timezone": "^0.5.21",
-    "sanitize-html": "^1.20.0",
+    "sanitize-html": "^2.3.2",
     "validator": "^10.8.0",
     "xss": "^1.0.3"
   },
