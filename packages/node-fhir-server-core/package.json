@@ -57,7 +57,7 @@
     "mongodb": "^3.0.0-rc0",
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
-    "sanitize-html": "^1.16.1",
+    "sanitize-html": "^2.3.2",
     "serve-favicon": "^2.5.0",
     "snyk": "^1.334.0",
     "superagent": "^3.8.3",
