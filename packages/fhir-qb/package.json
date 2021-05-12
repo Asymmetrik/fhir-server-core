@@ -34,7 +34,7 @@
   "dependencies": {
     "@asymmetrik/fhir-qb-mongo": "^0.12.3",
     "@asymmetrik/fhir-sanitize-param": "^1.1.6",
-    "mathjs": "^5.2.3",
+    "mathjs": "^7.5.1",
     "moment": "^2.24.0",
     "sequelize": "^5.19.0",
     "xregexp": "^4.2.0"
